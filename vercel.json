@@ -1,8 +1,8 @@
-
+{
 "version": 2,
 "builds": [
   {
-    "src": "mywweb/myweb/wsgi.py",
+    "src": "myweb/myweb/wsgi.py",
     "use": "@vercel/python",
     "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
   },
@@ -21,7 +21,7 @@
   },
   {
     "src": "/(.*)",
-    "dest": "mywweb/myweb/wsgi.py"
+    "dest": "myweb/myweb/wsgi.py"
   }
 ]
 }
