@@ -1,5 +1,5 @@
 # myapp/views.py
-
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
@@ -9,18 +9,23 @@ def home(request):
     return render(request, 'home.html')
 
 def signup(request):
+    print(request.method)
     if request.method == 'POST':
         form = SignUpForm(request.POST)
+        print("sdghskj")
         if form.is_valid():
+            print("abcd")
             user = form.save()
             login(request, user)
             messages.success(request, 'Signup successful!')
             return redirect('home')
+        else:
+            print(form.errors)
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
 
-def login(request):
+def user_login(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
